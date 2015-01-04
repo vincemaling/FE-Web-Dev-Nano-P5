@@ -50,6 +50,9 @@ User Guide <a id="chapter-2"></a>
 <dt>(8) Menu Selectors (Mobile)</dt>
 <dd>Although the Google Map is the default view in the mobile version of the application, you can access a drop-down list view of search results or favorites by clicking the corresponding icon in the top-right of the screen. Clicking the icon again (or clicking another icon) dismisses the view.</dd></dl>
 
+![Mobile Search List](https://github.com/vincemaling/FE-Web-Dev-Nano-P5/blob/master/images/mobile-search-list.png)
+![Mobile Favorites List](https://github.com/vincemaling/FE-Web-Dev-Nano-P5/blob/master/images/mobile-favorites-list.png)
+
 APIs Used <a id="chapter-3"></a>
 ---------
 <dl><dt>Google Maps API</dt>
