@@ -75,9 +75,9 @@ Libraries used in this application included:
 - jQuery
 - Bootstrap
 
-I also learned quite a bit about custom Knockout JS data binding by reviewing [this very helpful article] (http://www.codeproject.com/Articles/351298/KnockoutJS-and-Google-Maps-binding "KnockoutJS and Google Maps Binding).  
+I also learned quite a bit about custom Knockout JS data binding by reviewing [this very helpful article] (http://www.codeproject.com/Articles/351298/KnockoutJS-and-Google-Maps-binding "KnockoutJS and Google Maps Binding").  
 
-Finally, I should note that the Development Guide for the Yelp API encourages developers to use a server-side script (e.g. PHP) rather than Javascript. It also advises developers to avoid JSONP if possible. I followed this advice and created my own PHP script, which I've included in this project (under the PHP folder).  
+Finally, I should note that the Development Guide for the Yelp API encourages developers to use a server-side script (e.g. PHP) rather than Javascript. I followed this advice and created my own PHP script, which I've included in this project (under the PHP folder).  
 
 Because Internet Explorer does not accept cross-origin browser requests, if you want to demo this application in IE you'll need to either (1) install the PHP script on your server (or whichever server you plan to run the project from), or (2) simply use the live link I've provided at the top of this article.
 
