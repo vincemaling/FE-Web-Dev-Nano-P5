@@ -9,187 +9,35 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     
-    <!-- Additional inlined CSS for performance optimization -->  
-    <style>
-      html, body {
-          height: 100%;
-      }
-      .inheritheight {
-          height: inherit;
-      }
-      #map-canvas {
-        margin: 0px;
-        padding: 0px
-      }
-      .modalwait {
-        display: block;
-        top: 0;
-        left: 0;
-        margin-right: 10;
-        position: absolute;
-        z-index: 100;
-        height: 100%;
-        width: 100%;
-        background-color: black;
-        color: white;
-        opacity: 0.80;
-        padding-top: 200px;
-        text-align: center;
-      }
-    @media (min-width: 992px) {
-      .itemHeader {
-        float: left;
-        width: 80%;
-      }
-      .itemRating {
-        float: right;
-      }
-      .upperItem {
-        display: block;
-        width: 100%;
-        float: left;
-      }
-      #headerrow {
-        height: 50px;
-        background-color: black;
-        text-transform: uppercase;
-        color: white;
-        padding-bottom: 0;
-        margin-bottom: 0;
-      }
-      #desktopview {
-        height: 100%;
-        overflow-y: auto;
-      }
-      #mapdesktop {
-        padding: 0;
-        height: 100%;
-      }
-      #mapmobile, #headerrowmobile, #searchbarmobile, #searchlistmobile, #favoriteslistmobile, #neighborhoodselect {
-        display: none;
-      }
-      #neighborhoodlist {
-        float: left;
-        white-space: nowrap;
-        overflow-x: hidden;
-      }
-      .nhood {
-        display: block;
-        float: left;
-        height: 35px;
-        margin-top: 15px;
-        margin-right: 5px;
-        color: white;
-        text-align: center;
-        padding: 5px 10px;
-        font-size: 10dp;
-      }
-      .nhood:hover {
-        color: black;
-        background-color: white;
-        border-radius: 5px 5px 0px 0px;
-        cursor: pointer;
-      }
-      .hoodselected {
-        color: black;
-        background-color: white;
-        border-radius: 5px 5px 0px 0px;
-      }
-      .atllogo {
-        height: 45px;
-        float: right;
-        margin-top: 3px;
-      }
-    }
-    @media (max-width: 991px) {
-           
-      #sitetitle, #headerrow, #neighborhoodtitle, #neighborhoodlist, #desktopview, .streetview {
-        display: none;
-      }
-      #mapdesktop {
-        padding: 0px;
-        z-index: 5;
-        height: 100%;
-      }
-      .markerinfo {
-        max-width: 200px;
-      }
-      .btn-muted {
-        background-color: black;
-        color: white;
-        border: none;
-        float: left;
-        height: 50px;
-      }
-      .btn-muted:hover {
-        color: white;
-        font-weight: bold;
-      }
-      .btn-menu {
-        background-color: black;
-        color: white;
-        margin-left: 10px;
-        margin-top: 10px;
-        float: right;  
-        padding: 0;
-        height: 30px;
-        width: 30px;
-      }
-      .logo {
-        height: 40px;
-        margin-top: 5px;
-        float: left;
-      }
-      #searchbarmobile, #neighborhoodselect {
-         display: flex;
-         background-color: black;
-         z-index: 99;
-         height: auto;
-      }
-      #searchlistmobile, #favoriteslistmobile {
-         display: flex;
-         background-color: #F0F0F0;
-         z-index: 99;
-         height: auto;
-      }
-      #headerrowmobile {
-        display: flex;
-        height: 50px;
-        background-color: black;
-        text-transform: uppercase;
-        color: white;
-        padding-bottom: 0;
-        margin-bottom: 0;
-        z-index: 99;
-      }
-    }
-      </style>
+    <!-- Additional inlined, minified CSS for performance optimization -->  
+<style> html,body{height:100%}.inheritheight{height:inherit}#bodyrow{height:90%}#map-canvas{margin:0;padding:0}.modalwait{display:block;top:0;left:0;margin-right:10;position:absolute;z-index:100;height:100%;width:100%;background-color:#000;color:#fff;opacity:.8;padding-top:200px;text-align:center}@media (min-width:992px){.itemHeader{float:left;width:80%}.itemRating{float:right}.upperItem{display:block;width:100%;float:left}#headerrow{height:50px;background-color:#000;text-transform:uppercase;color:#fff;padding-bottom:0;margin-bottom:0}#desktopview{height:100%;overflow-y:auto}#mapcontainer{padding:0;height:100%}#favoriteslistmobile,#headerrowmobile,#mapmobile,#neighborhoodselect,#searchbarmobile,#searchlistmobile{display:none}#neighborhoodlist{float:left;white-space:nowrap;overflow-x:hidden}.nhood{display:block;float:left;height:35px;margin-top:15px;margin-right:5px;color:#fff;text-align:center;padding:5px 10px;font-size:10dp}.nhood:hover{color:#000;background-color:#fff;border-radius:5px 5px 0 0;cursor:pointer}.hoodselected{color:#000;background-color:#fff;border-radius:5px 5px 0 0}.atllogo{height:45px;float:right;margin-top:3px}}@media (max-width:991px){#desktopview,#headerrow,#neighborhoodlist,#neighborhoodtitle,#sitetitle,.streetview{display:none}#mapcontainer{padding:0;z-index:5;height:100%}.markerinfo{max-width:200px}.btn-muted{background-color:#000;color:#fff;border:none;float:left;height:50px}.btn-muted:hover{color:#fff;font-weight:700}.btn-menu{background-color:#000;color:#fff;margin-left:10px;margin-top:10px;float:right;padding:0;height:30px;width:30px}.logo{height:40px;margin-top:5px;float:left}#neighborhoodselect,#searchbarmobile{display:flex;background-color:#000;z-index:99;height:auto}#favoriteslistmobile,#searchlistmobile{display:flex;background-color:#F0F0F0;z-index:99;height:auto}#headerrowmobile{display:flex;height:50px;background-color:#000;text-transform:uppercase;color:#fff;padding-bottom:0;margin-bottom:0;z-index:99}}</style>
+  
   </head>
   <body>
       
   	<div class="container-fluid inheritheight">
 
+        <!-- DESKTOP HEADER | This section defines the header to be used in the desktop view (>991 px) -->
         <div id="headerrow" class="row">
-            <div class="col-md-8">
 
-                <!-- The list of tabs (one for each neighborhood) is data-bound to the neighborhoods observable via Knockout  -->
+            <!-- The list of tabs (one for each neighborhood) is data-bound to the neighborhoods observable via Knockout  -->
+            <div class="col-md-8">
                 <div id="neighborhoodlist" data-bind="foreach: neighborhoods">
                  <span data-bind="click: $parent.refreshNeighborhood, text: name, css: { hoodselected: id==$parent.currentNeighborhood() }" class="nhood"></span>
                 </div>
-
-
             </div>            
+            
             <div class="col-md-4">
                 <img src="images/atllogo.png" class="atllogo">
-
             </div>  
             
         </div>        
  
+        <!-- MOBILE HEADER | This section defines the header to be used in the mobile view (<992 px) -->
         <div id="headerrowmobile" class="row">
-            <div class="col-sm-12 col-xs-12">
 
-                <!-- The list of tabs (one for each neighborhood) is data-bound to the neighborhoods observable via Knockout  -->
+            <!-- The header includes a weather widget, neighborhood selector button, and list view icons. Their behaviors are controlled by data-binding.  -->
+            <div class="col-sm-12 col-xs-12">
                 <img class="logo" data-bind="attr: { src: alldata()[currentNeighborhood()].weather().icon }, visible: weatherLoaded">
                 <button data-bind="click: toggleNeighborhoodList" class="btn btn-large btn-muted"><span data-bind="text: currentNeighborhoodName"></span><span class="glyphicon glyphicon-chevron-down" style="color: white; margin-left: 10px;" aria-hidden="true"></span></button>
                 <img data-bind = "attr: { src: favoritesImage }, click: toggleFavoritesList" class="btn-menu">
@@ -198,6 +46,7 @@
             </div>            
         </div>    
 
+        <!-- MOBILE NEIGHBORHOOD SELECTOR | This section allows the user to toggle between neighborhoods -->
         <div id="neighborhoodselect" data-bind="visible: neighborhoodList" class="row">
             <div class="col-sm-12 col-xs-12">
                 <div id="neighborhoodselect" data-bind = "foreach: neighborhoods" class="row">
@@ -205,16 +54,17 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- MOBILE SEARCH BAR | This section defines the search bar used in the mobile version of the application -->
         <div id="searchbarmobile" class="row">
             <div class="col-sm-12 col-xs-12">
                 <div class="form-group voffset2">
-				    <input type="text" class="form-control" id="searchBox" data-bind="value: searchValue, valueUpdate: 'afterkeydown'" placeholder="Burgers, bar, landmark...">
+				    <input type="text" class="form-control" id="searchBox" data-bind="textInput: searchValue" placeholder="Burgers, bar, landmark...">
 				</div>
             </div>
         </div>
 
-        
+        <!-- MOBILE SEARCH LIST VIEW | This section defines the list view for search results in the mobile view -->
         <div id="searchlistmobile" data-bind = "visible: searchList" class="row">
             <div class="col-sm-12 col-xs-12">
                 <h4><span class="glyphicon glyphicon-map-marker" style="color: green" aria-hidden="true"></span> Search Results <span style="float: right"><img src="http://s3-media4.fl.yelpcdn.com/assets/2/www/img/56884a7c4c0e/developers/reviewsFromYelpYLW.gif"></span></h4>
@@ -223,7 +73,8 @@
                       <h5 class="list-group-item-heading"> No results yet!</h5>
                       <p><small class="list-group-item-text">Start typing in the search bar above to initiate a search.</small></p> 
                     </a>
-                </div>                
+                </div>      
+                <!-- The section below appears only when no search results are retirved, to let the user know to keep trying -->
                 <div id="searchresults" class="list-group" data-bind="visible: searchResults().length>0, foreach: searchResults">
                     <a href="" data-bind = "click: $parent.viewSearchItem" class="list-group-item">
                       <div class="upperItem"><h5 class="list-group-item-heading itemHeader" data-bind="text: name"></h5>
@@ -235,6 +86,7 @@
             </div>
         </div>
         
+        <!-- MOBILE FAVORITES LIST VIEW | This section defines the list view for each neighborhood's favorites in the mobile view -->
         <div id="favoriteslistmobile" data-bind = "visible: favoritesList" class="row">
             <div class="col-sm-12 col-xs-12">
                 <h4><span style="float: right"><img src="http://s3-media4.fl.yelpcdn.com/assets/2/www/img/56884a7c4c0e/developers/reviewsFromYelpYLW.gif"></span><span class="glyphicon glyphicon-heart" style="color: red" aria-hidden="true"></span> Favorites </h4>
@@ -249,21 +101,24 @@
             </div>
         </div>
         
-		<div class="row" style="height: 90%">
-			<div id="desktopview" class="col-md-4">
+        
+		<div class="row" id="bodyrow">
+
+            <!-- DESKTOP LEFT-HAND PANEL | This section defines the left-hand panel that houses the weather widget, search bar, and list views for the desktop experience --> 
+            <div id="desktopview" class="col-md-4">
                 
-                <!-- Content bar title is data-bound (via Knockout.js) to the user's neighborhood selection -->
+                <!-- Both the weather widget and the neighborhood title are data-bound (via Knockout.js) to the current neighborhood selection -->
 				<a href="#" onClick="return false;" data-html="true" data-bind="visible: weatherLoaded, attr: { 'data-content': weatherTemplate() } " data-title="Current Weather" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" style="float: left">
-                   <img data-bind="attr: { src: alldata()[currentNeighborhood()].weather().icon }">
+                    <img data-bind="attr: { src: alldata()[currentNeighborhood()].weather().icon }">
                 </a>
                 <h3 id="neighborhoodtitle" style="text-transform: uppercase" data-bind="text: currentNeighborhoodName">Lindbergh</h3>
-				  <div class="form-group voffset3">
-                    
-                    <!-- A change to the contents of the search bar triggers an AJAX search -->  
-				    <input type="text" class="form-control" id="searchBox" data-bind="textInput: searchValue" placeholder="Burgers, bar, landmark...">
-				  </div>
+
+                <!-- Text input in the search box changes the searchValue observable, which triggers an AJAX search --> 
+                <div class="form-group voffset3">    
+                    <input type="text" class="form-control" id="searchBox" data-bind="textInput: searchValue" placeholder="Burgers, bar, landmark...">
+				</div>
                 
-                <!-- Search results are displayed only when a search has been conducted; otherwise, only the user's Favorites display -->
+                <!-- Search results are displayed only when a search has been conducted; otherwise, only the user's favorites display -->
 				<h4 id="searchresultstitle" class="voffset3" data-bind = "visible: searchResults().length>0"><span class="glyphicon glyphicon-map-marker" style="color: green" aria-hidden="true"></span> Search Results <span style="float: right"><img src="http://s3-media4.fl.yelpcdn.com/assets/2/www/img/56884a7c4c0e/developers/reviewsFromYelpYLW.gif"></span></h4>
                 
                 <!-- The search results list is data-bound (via Knockout) to the search results array -->
@@ -287,19 +142,18 @@
                   </a>
 				</div>
 			</div>
-        <div id="mapdesktop" class="col-md-8 col-xs-12 col-sm-12">
-            
-            <!-- The map canvas is included in HTML, but instantiated in neighborhooddata.js -->
-            <div id="map-canvas" class="inheritheight" data-bind="searchmarkerlist: { locations: searchResults }, favoritesmarkerlist: { locations: alldata()[currentNeighborhood()].faves }"></div>
-            
-            <div class="modalwait" data-bind="visible: modalVisible"><h3>Uh-oh!</h3> <p id="uhOhMessage" data-bind = "text: modalMessage">We couldn't find any locations matching your search criteria.</p><button data-bind="click: toggleModal" class="btn btn-primary">Dismiss</button></div>
-        </div>
-            
-        </div>
-            
-    </div>
-    </div>    
         
+            <!-- MAP CONTAINER | The section below makes room for our Google Map as well as a special, map-level modal window used for error messaging -->
+            <div id="mapcontainer" class="col-md-8 col-xs-12 col-sm-12">
+                <div id="map-canvas" class="inheritheight" data-bind="searchmarkerlist: { locations: searchResults }, favoritesmarkerlist: { locations: alldata()[currentNeighborhood()].faves }"></div>
+                <div class="modalwait" data-bind="visible: modalVisible"><h3>Uh-oh!</h3> <p id="uhOhMessage" data-bind = "text: modalMessage">We couldn't find any locations matching your search criteria.</p><button data-bind="click: toggleModal" class="btn btn-primary">Dismiss</button></div>
+            </div>
+            
+        </div>
+            
+    </div>    
+    
+    <!-- "LOADING" MODAL | Here we create a special modal window used to display a "Loading" message that takes up the entire screen -->
     <div class="modalwait" data-bind="visible: favoritesYetToBeRefreshed"><h3>Just a moment!</h3> <p>We're refreshing our Yelp and Google data for your favorite locations.</p></div>
       
     <!-- Javascript resources include: Google Maps API, jQuery, Bootstrap, Knockout.js, and my own JS -->

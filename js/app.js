@@ -72,6 +72,7 @@ var dataModel = {
       zIndex: 99
   },
   "openWeatherAPIKey" : "6a43a7b10f073446d59c23a4ae0e1ebb",
+  "yelpSearchLimit" : 5,
   "initialSearchResults": [],
   "searchFailMessage": "We called Yelp and Google, but they didn't pick up. Maybe their servers are down!",
   "weatherFailMessage": "We called Open Weather, but they didn't pick up. Maybe their servers are down!",
@@ -212,7 +213,7 @@ var neighborhoodViewModel = function(initialFaves) {
     self.searchValue.subscribe(function () {
       if (self.searchValue().length>1) {
         self.modalVisible(false);
-        var urlstring = "http://www.vincentmaling.com/Yelp/yelpgetter.php?location=" + self.alldata()[self.currentNeighborhood()].name + "+" + self.alldata()[self.currentNeighborhood()].city + "+" + self.alldata()[self.currentNeighborhood()].state + "&term=" + self.searchValue();
+        var urlstring = "http://www.vincentmaling.com/Yelp/yelpgetter.php?location=" + self.alldata()[self.currentNeighborhood()].name + "+" + self.alldata()[self.currentNeighborhood()].city + "+" + self.alldata()[self.currentNeighborhood()].state + "&term=" + self.searchValue() + "&limit=" + dataModel.yelpSearchLimit;
         $.getJSON( urlstring )
             .done(function( json ) {
               self.addSearchResults(json);
@@ -390,7 +391,7 @@ var neighborhoodViewModel = function(initialFaves) {
                       weatherobj = {
                         "icon": "http://openweathermap.org/img/w/" + json.weather[0].icon + ".png",
                         "temp": (((json.main.temp - 273.15) * 1.8000) + 32.00).toFixed(1) + " F",
-                        "desc": json.weather[0].main,
+                        "desc": json.weather[0].description,
                         "hum": json.main.humidity + "%",
                         "wind": (json.wind.speed * 2.2369362920544).toFixed(1) + " mph"
                       };
@@ -470,9 +471,11 @@ var neighborhoodViewModel = function(initialFaves) {
     // When a user toggles between neighborhoods, this function clears any existing map markers / list box items, and adds Favorites from the new neighborhood.
     
     self.refreshNeighborhood = function(item) {
-        self.clearMarkers("all");
-        self.currentNeighborhood(item.id);
-        self.currentNeighborhoodName(item.name);
+        if (item.id != self.currentNeighborhood()) {
+            self.clearMarkers("all");
+            self.currentNeighborhood(item.id);
+            self.currentNeighborhoodName(item.name);
+        }
         self.searchValue('');
         self.neighborhoodList(false);
         var newcenter = new google.maps.LatLng(self.alldata()[self.currentNeighborhood()].lat, self.alldata()[self.currentNeighborhood()].lng);
