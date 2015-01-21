@@ -14,21 +14,21 @@ ko.bindingHandlers.favoritesmarkerlist = {
         var value = valueAccessor();
         var latLng;
 
-        for (var l in value.locations())
+        for (var location_index in value.locations())
         {
-            if (value.locations()[l].pinpoint) value.locations()[l].pinpoint.setMap(null); 
+            if (value.locations()[location_index].pinpoint) value.locations()[location_index].pinpoint.setMap(null); 
             latLng = new google.maps.LatLng(
-                            value.locations()[l].lat, 
-                            value.locations()[l].lng);
-            value.locations()[l].pinpoint = new google.maps.Marker({
+                            value.locations()[location_index].lat, 
+                            value.locations()[location_index].lng);
+            value.locations()[location_index].pinpoint = new google.maps.Marker({
                 position: latLng,
-                map: value.locations()[l].map,
-                icon: value.locations()[l].icon,
-                title: value.locations()[l].name
+                map: value.locations()[location_index].map,
+                icon: value.locations()[location_index].icon,
+                title: value.locations()[location_index].name
               });
 
 
-            viewModel.attachMessage(value.locations()[l].pinpoint, value.locations()[l], "Yelp!");
+            viewModel.attachMessage(value.locations()[location_index].pinpoint, value.locations()[location_index], "Yelp!");
         }
     }
 };
@@ -41,21 +41,21 @@ ko.bindingHandlers.searchmarkerlist = {
         var value = valueAccessor();
         var latLng;
 
-        for (var l in value.locations())
+        for (var location_index in value.locations())
         {
-            if (value.locations()[l].pinpoint) value.locations()[l].pinpoint.setMap(null); 
+            if (value.locations()[location_index].pinpoint) value.locations()[location_index].pinpoint.setMap(null); 
             latLng = new google.maps.LatLng(
-                            value.locations()[l].lat, 
-                            value.locations()[l].lng);
-            value.locations()[l].pinpoint = new google.maps.Marker({
+                            value.locations()[location_index].lat, 
+                            value.locations()[location_index].lng);
+            value.locations()[location_index].pinpoint = new google.maps.Marker({
                 position: latLng,
-                map: value.locations()[l].map,
-                icon: value.locations()[l].icon,
-                title: value.locations()[l].name
+                map: value.locations()[location_index].map,
+                icon: value.locations()[location_index].icon,
+                title: value.locations()[location_index].name
               });
 
 
-            viewModel.attachMessage(value.locations()[l].pinpoint, value.locations()[l], "Yelp!");
+            viewModel.attachMessage(value.locations()[location_index].pinpoint, value.locations()[location_index], "Yelp!");
         }
     }
 };
@@ -68,12 +68,14 @@ ko.bindingHandlers.searchmarkerlist = {
 var dataModel = { 
   "initialMapOptions" : {
       zoom: 14,
-      center: new google.maps.LatLng(33.805312,-84.366842),
+      lat: 33.805312,
+      lng: -84.366842,
       zIndex: 99
   },
   "openWeatherAPIKey" : "6a43a7b10f073446d59c23a4ae0e1ebb",
   "yelpSearchLimit" : 5,
   "initialSearchResults": [],
+  "mapFailMessage": "We can't get Google Maps to work. Maybe their servers are down!",
   "searchFailMessage": "We called Yelp and Google, but they didn't pick up. Maybe their servers are down!",
   "weatherFailMessage": "We called Open Weather, but they didn't pick up. Maybe their servers are down!",
   "favoritesFailMessage": "One or more of your previously saved favorites could not be refreshed. It may have gone out of business or moved. Try searching for it!",
@@ -203,9 +205,24 @@ var neighborhoodViewModel = function(initialFaves) {
         self.neighborhoods = ko.observableArray(self.alldata());
         
         // These variables control the position of the map, and also configure it for start-up
-        self.latlngbounds = new google.maps.LatLngBounds();
-        self.map = new google.maps.Map(document.getElementById('map-canvas'), dataModel.initialMapOptions);
-
+        if (typeof google === 'object' && typeof google.maps === 'object') {
+            self.latlngbounds = new google.maps.LatLngBounds();
+            var center = new google.maps.LatLng(dataModel.initialMapOptions.lat, dataModel.initialMapOptions.lng);
+            var updatedMapOptions = {
+                "zoom": dataModel.initialMapOptions.zoom,
+                "center": center,
+                "zIndex": dataModel.initialMapOptions.zIndex
+            };
+            self.map = new google.maps.Map(document.getElementById('map-canvas'), updatedMapOptions);
+        } else {
+          self.modalMessage(dataModel.mapFailMessage);
+          self.modalVisible(true);
+        }   
+        
+        // This event listener ensures the map has loaded and is in an idle state. If not, the modal error message remains visible.
+/*        google.maps.event.addListenerOnce(self.map, 'idle', function(){
+            self.modalVisible(false);
+        });*/
 
     // SEARCH UPDATES
     // The function below creates a "subscription" to the searchValue observable, and updates search results based on a Yelp AJAX call any time it changes

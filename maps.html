@@ -146,7 +146,7 @@
             <!-- MAP CONTAINER | The section below makes room for our Google Map as well as a special, map-level modal window used for error messaging -->
             <div id="mapcontainer" class="col-md-8 col-xs-12 col-sm-12">
                 <div id="map-canvas" class="inheritheight" data-bind="searchmarkerlist: { locations: searchResults }, favoritesmarkerlist: { locations: alldata()[currentNeighborhood()].faves }"></div>
-                <div class="modalwait" data-bind="visible: modalVisible"><h3>Uh-oh!</h3> <p id="uhOhMessage" data-bind = "text: modalMessage">We couldn't find any locations matching your search criteria.</p><button data-bind="click: toggleModal" class="btn btn-primary">Dismiss</button></div>
+                <div class="modalwait" data-bind="visible: modalVisible"><h3>Uh-oh!</h3> <p id="uhOhMessage" data-bind = "text: modalMessage">We couldn't get Google Maps to respond! Maybe they're on vacation.</p><button data-bind="click: toggleModal" class="btn btn-primary">Dismiss</button></div>
             </div>
             
         </div>
