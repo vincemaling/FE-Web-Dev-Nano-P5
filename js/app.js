@@ -204,7 +204,7 @@ var neighborhoodViewModel = function(initialFaves) {
         self.currentNeighborhoodName = ko.observable("Lindbergh");
         self.neighborhoods = ko.observableArray(self.alldata());
         
-        // These variables control the position of the map, and also configure it for start-up
+        // Determine if Google Maps API was loaded successfully; if so, display the map. If not, display an error modal.
         if (typeof google === 'object' && typeof google.maps === 'object') {
             self.latlngbounds = new google.maps.LatLngBounds();
             var center = new google.maps.LatLng(dataModel.initialMapOptions.lat, dataModel.initialMapOptions.lng);
@@ -218,11 +218,7 @@ var neighborhoodViewModel = function(initialFaves) {
           self.modalMessage(dataModel.mapFailMessage);
           self.modalVisible(true);
         }   
-        
-        // This event listener ensures the map has loaded and is in an idle state. If not, the modal error message remains visible.
-/*        google.maps.event.addListenerOnce(self.map, 'idle', function(){
-            self.modalVisible(false);
-        });*/
+    
 
     // SEARCH UPDATES
     // The function below creates a "subscription" to the searchValue observable, and updates search results based on a Yelp AJAX call any time it changes
